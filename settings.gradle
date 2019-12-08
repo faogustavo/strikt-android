@@ -1,0 +1,2 @@
+include ':app', ':strikt-android'
+rootProject.name='Strikt Android Sample'

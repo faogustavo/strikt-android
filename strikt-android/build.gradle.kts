@@ -1,8 +1,11 @@
+import com.novoda.gradle.release.PublishExtension
+
 plugins {
     id("com.android.library")
     kotlin("android")
     kotlin("android.extensions")
     id("jacoco")
+    id("com.novoda.bintray-release")
 }
 
 jacoco {
@@ -59,6 +62,18 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+}
+
+configure<PublishExtension> {
+    userOrg = "faogustavo"
+    groupId = Distribution.Android.groupId
+    artifactId = Distribution.Android.artifactId
+    publishVersion = Distribution.Android.version
+    desc = "Strikt extensions to validate android classes"
+    website = "https://github.com/faogustavo/strikt-android"
+    bintrayUser = System.getenv("BINTRAY_USER")
+    bintrayKey = System.getenv("BINTRAY_KEY")
+    dryRun = false
 }
 
 project.afterEvaluate {

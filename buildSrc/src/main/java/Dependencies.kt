@@ -2,6 +2,7 @@
 object Versions {
     val gradle = "3.5.2"
     val kotlin = "1.3.61"
+    val bintrayRelease = "0.9.2"
 
     val androidx = "1.0.2"
     val junit = "4.12"
@@ -27,10 +28,13 @@ object Libs {
 object BuildDependencies {
     val gradle = "com.android.tools.build:gradle:${Versions.gradle}"
     val kotlin = "gradle-plugin"
+    val release = "com.novoda:bintray-release:${Versions.bintrayRelease}"
 }
 
 object Distribution {
-    val groupId = "io.strikt"
-    val artifactId = "strikt-android"
-    val version = "${Versions.strikt}-rc01"
+    object Android {
+        val groupId = "io.strikt"
+        val artifactId = "strikt-android"
+        val version = "${Versions.strikt}-alpha01"
+    }
 }

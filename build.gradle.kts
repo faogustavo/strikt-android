@@ -9,6 +9,7 @@ buildscript {
     dependencies {
         classpath(BuildDependencies.gradle)
         classpath(kotlin(BuildDependencies.kotlin, Versions.kotlin))
+        classpath(BuildDependencies.release)
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }

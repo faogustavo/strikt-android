@@ -1,5 +1,16 @@
 # Strikt Android
 
+<p align="center">
+    <a href="https://bintray.com/faogustavo/maven/strikt-android"><img src="https://img.shields.io/badge/dynamic/json.svg?label=latest%20release&url=https%3A%2F%2Fapi.bintray.com%2F%2Fpackages%2Ffaogustavo%2Fmaven%2Fstrikt-android%2Fversions%2F_latest&query=name&colorB=0094cd&style=for-the-badge" alt="Bintray"/></a>
+    <a href="https://www.apache.org/licenses/LICENSE-2.0.html"><img src="https://img.shields.io/github/license/faogustavo/strikt-android.svg?style=for-the-badge&logo=Apache" alt="License"/></a>
+</p>
+
+<p align="center">
+    <a href="https://github.com/faogustavo/strikt-android/issues"><img src="https://img.shields.io/github/issues/faogustavo/strikt-android.svg?style=for-the-badge&logo=Github" alt="GitHub issues"/></a>
+    <a href="/"><img src="https://img.shields.io/github/languages/top/faogustavo/strikt-android.svg?style=for-the-badge&logo=Kotlin&logoColor=white" alt="GitHub top language"/></a>
+    <a href="https://github.com/faogustavo/strikt-android/actions?query=workflow%3A%22Android+CI%22"><img src="https://img.shields.io/github/workflow/status/faogustavo/strikt-android/Android%20CI?style=for-the-badge&logo=Github" alt="Build Status"/></a>
+</p>
+
 Strikt-android is an extension from the Strikt project.
 This project adds the support to assert some android native components and classes.
 
@@ -16,6 +27,7 @@ repositories {
 }
 
 dependencies {
+  testImplementation("io.strikt:strikt-core:0.22.3")
   testImplementation("io.strikt:strikt-android:<version>")
 }
 ```

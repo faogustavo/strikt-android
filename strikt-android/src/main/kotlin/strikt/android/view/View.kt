@@ -1,4 +1,4 @@
-package strikt.android
+package strikt.android.view
 
 import android.view.View
 import strikt.android.ext.toViewVisibility

@@ -1,17 +1,13 @@
-package strikt.android
+package strikt.android.view
 
 import android.view.View
 import io.mockk.every
 import io.mockk.mockk
-import junit.framework.AssertionFailedError
 import org.junit.Test
 import strikt.api.expectCatching
 import strikt.api.expectThat
 import strikt.assertions.failed
 import strikt.assertions.isA
-import strikt.assertions.isEqualTo
-import strikt.assertions.message
-import java.lang.AssertionError
 
 class ViewTests {
 

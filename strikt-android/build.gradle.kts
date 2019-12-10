@@ -17,8 +17,9 @@ android {
     buildToolsVersion(Versions.buildTools)
 
     sourceSets {
-        val main by getting
-        main.java.srcDirs("src/main/kotlin/")
+        getByName("main").java.srcDirs("src/main/kotlin/")
+        getByName("test").java.srcDirs("src/test/kotlin/")
+        getByName("androidTest").java.srcDirs("src/androidTest/kotlin/")
     }
 
     compileOptions {
@@ -32,6 +33,7 @@ android {
         versionCode = Versions.versionCode
         versionName = Versions.strikt
 
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -39,6 +41,11 @@ android {
         getByName("release") {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        }
+        getByName("debug") {
+            isMinifyEnabled = false
+            isDebuggable = true
+            isTestCoverageEnabled = true
         }
     }
 
@@ -56,6 +63,10 @@ dependencies {
     testImplementation(Libs.junit)
     testImplementation(Libs.mockk)
     testImplementation(Libs.striktCore)
+
+    androidTestImplementation(Libs.androidRunner)
+    androidTestImplementation(Libs.androidJunit)
+    androidTestImplementation(Libs.striktCore)
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {

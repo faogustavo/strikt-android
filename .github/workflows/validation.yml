@@ -42,3 +42,6 @@ jobs:
 
       - name: Test
         run: ./gradlew testDebugUnitTest
+
+      - name: Integrated Tests
+        uses: vgaidarji/android-github-actions/emulator@v1.0.0

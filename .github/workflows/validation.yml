@@ -31,6 +31,9 @@ jobs:
         with:
           java-version: 1.8
 
+      - name: Install AndroidSDK
+        run: ./quality/install_android_sdk.sh
+
       - name: Make gradlew executable
         run: chmod +x gradlew
 
@@ -44,4 +47,4 @@ jobs:
         run: ./gradlew testDebugUnitTest
 
       - name: Integrated Tests
-        uses: vgaidarji/android-github-actions/emulator@v1.0.0
+        run: ./quality/run_ui_tests.sh

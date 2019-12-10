@@ -31,8 +31,12 @@ jobs:
         with:
           java-version: 1.8
 
-      - name: Install AndroidSDK
-        run: ./quality/install_android_sdk.sh
+      - name: Download and Install SDK
+        run: |
+          mkdir /tmp/.androidSdk
+          wget --quiet --output-document=android-sdk.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip
+          sudo unzip -d ~/.androidSdk android-sdk.zip > /dev/null
+          export ANDROID_HOME="/tmp/.androidSdk"
 
       - name: Make gradlew executable
         run: chmod +x gradlew
@@ -47,4 +51,9 @@ jobs:
         run: ./gradlew testDebugUnitTest
 
       - name: Integrated Tests
-        run: ./quality/run_ui_tests.sh
+        uses: malinskiy/action-android/emulator-run-cmd@release/0.0.5
+        with:
+          cmd: ./gradlew connectedAndroidTest
+          api: 25
+          tag: default
+          abi: x86

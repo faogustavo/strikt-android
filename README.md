@@ -8,7 +8,7 @@
 <p align="center">
     <a href="https://github.com/faogustavo/strikt-android/issues"><img src="https://img.shields.io/github/issues/faogustavo/strikt-android.svg?style=for-the-badge&logo=Github" alt="GitHub issues"/></a>
     <a href="/"><img src="https://img.shields.io/github/languages/top/faogustavo/strikt-android.svg?style=for-the-badge&logo=Kotlin&logoColor=white" alt="GitHub top language"/></a>
-    <a href="https://github.com/faogustavo/strikt-android/actions?query=workflow%3A%22Android+CI%22"><img src="https://img.shields.io/github/workflow/status/faogustavo/strikt-android/Android%20CI?style=for-the-badge&logo=Github" alt="Build Status"/></a>
+    <a href="https://app.bitrise.io/app/07b6326cddb78aa4"><img src="https://img.shields.io/bitrise/07b6326cddb78aa4/master?logo=bitrise&style=for-the-badge&token=JiR5fzcxWMLyJYmNgHCzjw" alt="Build Status"/></a>
 </p>
 
 Strikt-android is an extension from the Strikt project.

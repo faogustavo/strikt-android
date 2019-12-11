@@ -14,6 +14,8 @@ object Versions {
     val targetSdk = 29
     val buildTools = "29.0.2"
     val versionCode = 1
+
+    val instrumentedVersion = "1.1.1"
 }
 
 object Libs {
@@ -23,6 +25,9 @@ object Libs {
     val striktCore = "io.strikt:strikt-core:${Versions.strikt}"
     val junit = "junit:junit:${Versions.junit}"
     val mockk = "io.mockk:mockk:${Versions.mockk}"
+
+    val androidJunit = "androidx.test.ext:junit:${Versions.instrumentedVersion}"
+    val androidRunner = "androidx.test:runner:${Versions.instrumentedVersion}"
 }
 
 object BuildDependencies {

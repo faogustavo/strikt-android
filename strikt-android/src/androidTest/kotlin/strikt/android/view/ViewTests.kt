@@ -1,15 +1,17 @@
 package strikt.android.view
 
 import android.view.View
-import io.mockk.every
-import io.mockk.mockk
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Test
+import org.junit.runner.RunWith
+import strikt.android.BaseTestClass
 import strikt.api.expectCatching
 import strikt.api.expectThat
 import strikt.assertions.failed
 import strikt.assertions.isA
 
-class ViewTests {
+@RunWith(AndroidJUnit4::class)
+class ViewTests : BaseTestClass() {
 
     @Test
     fun isVisible_withVisibleView_shouldSucceed() {
@@ -104,7 +106,7 @@ class ViewTests {
 
     private fun mockView(
         visibility: Int
-    ) = mockk<View>().also { view ->
-        every { view.visibility } returns visibility
+    ) = View(context).apply {
+        this.visibility = visibility
     }
 }

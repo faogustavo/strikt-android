@@ -14,41 +14,41 @@ class ViewVisibilityTests : BaseTestClass() {
 
     @Test
     fun isVisible_withVisibleView_shouldSucceed() {
-        val subject = mockView(visibility = View.VISIBLE)
+        val view = mockView(visibility = View.VISIBLE)
 
-        expectThat(subject).isVisible()
+        expectThat(view).isVisible()
     }
 
     @Test
     fun isInvisible_withInvisibleView_shouldSucceed() {
-        val subject = mockView(visibility = View.INVISIBLE)
+        val view = mockView(visibility = View.INVISIBLE)
 
-        expectThat(subject).isInvisible()
+        expectThat(view).isInvisible()
     }
 
     @Test
     fun isGone_withGoneView_shouldSucceed() {
-        val subject = mockView(visibility = View.GONE)
+        val view = mockView(visibility = View.GONE)
 
-        expectThat(subject).isGone()
+        expectThat(view).isGone()
     }
 
     @Test
     fun hasVisibility_withRightVisibility_shouldSucceed() {
-        val subject = mockView(visibility = View.VISIBLE)
+        val view = mockView(visibility = View.VISIBLE)
 
-        expectThat(subject).hasVisibility(View.VISIBLE)
+        expectThat(view).hasVisibility(View.VISIBLE)
     }
 
     @Test
     fun isVisible_withOtherVisibility_shouldFail() {
-        val subject = mockView(visibility = View.GONE)
+        val view = mockView(visibility = View.GONE)
 
         val expectedMessage =
             """▼ Expect that TestView():
             |  ✗ is visible : found "GONE"""".trimMargin()
 
-        expectCatching { expectThat(subject).isVisible() }
+        expectCatching { expectThat(view).isVisible() }
             .failed()
             .isA<AssertionError>()
             .message
@@ -57,13 +57,13 @@ class ViewVisibilityTests : BaseTestClass() {
 
     @Test
     fun isInvisible_withOtherVisibility_shouldFail() {
-        val subject = mockView(visibility = View.VISIBLE)
+        val view = mockView(visibility = View.VISIBLE)
 
         val expectedMessage =
             """▼ Expect that TestView():
             |  ✗ is invisible : found "VISIBLE"""".trimMargin()
 
-        expectCatching { expectThat(subject).isInvisible() }
+        expectCatching { expectThat(view).isInvisible() }
             .failed()
             .isA<AssertionError>()
             .message
@@ -72,13 +72,13 @@ class ViewVisibilityTests : BaseTestClass() {
 
     @Test
     fun isGone_withOtherVisibility_shouldFail() {
-        val subject = mockView(visibility = View.INVISIBLE)
+        val view = mockView(visibility = View.INVISIBLE)
 
         val expectedMessage =
             """▼ Expect that TestView():
             |  ✗ is gone : found "INVISIBLE"""".trimMargin()
 
-        expectCatching { expectThat(subject).isGone() }
+        expectCatching { expectThat(view).isGone() }
             .failed()
             .isA<AssertionError>()
             .message
@@ -87,13 +87,13 @@ class ViewVisibilityTests : BaseTestClass() {
 
     @Test
     fun hasVisibility_withWrongVisibility_shouldFail() {
-        val subject = mockView(visibility = View.INVISIBLE)
+        val view = mockView(visibility = View.INVISIBLE)
 
         val expectedMessage =
             """▼ Expect that TestView():
             |  ✗ has visibility "VISIBLE" : found "INVISIBLE"""".trimMargin()
 
-        expectCatching { expectThat(subject).hasVisibility(View.VISIBLE) }
+        expectCatching { expectThat(view).hasVisibility(View.VISIBLE) }
             .failed()
             .isA<java.lang.AssertionError>()
             .message

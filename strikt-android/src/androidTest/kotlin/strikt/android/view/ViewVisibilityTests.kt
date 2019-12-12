@@ -1,10 +1,7 @@
 package strikt.android.view
 
-import android.content.Context
 import android.view.View
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Test
-import org.junit.runner.RunWith
 import strikt.android.BaseTestClass
 import strikt.api.expectCatching
 import strikt.api.expectThat
@@ -107,9 +104,5 @@ class ViewVisibilityTests : BaseTestClass() {
         visibility: Int = View.VISIBLE
     ) = TestView(context).apply {
         this.visibility = visibility
-    }
-
-    class TestView(context: Context) : View(context) {
-        override fun toString() = "TestView()"
     }
 }

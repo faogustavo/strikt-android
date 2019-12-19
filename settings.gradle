@@ -1,2 +1,2 @@
 include ':app', ':strikt-android'
-rootProject.name='Strikt Android Sample'
+rootProject.name='Strikt Android'

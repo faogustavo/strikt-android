@@ -78,6 +78,35 @@ class UriTests {
 
     }
 
+    @Test
+    fun stringUri_withPath_shouldSucceed() {
+        val mockUri = mockUri().toString()
+
+        expectThat(mockUri)
+            .isUri()
+            .hasPath("kiwi")
+    }
+
+    @Test
+    fun stringUri_withPath_shouldFail() {
+        val mockUri = mockUri().toString()
+
+        val expectedMessage =
+            "▼ Expect that \"https://banana.net/coconunt/kiwi?size=big&spice=pepper\":\n" +
+                    "  ✓ is Uri\n" +
+                    "  ▼ https://banana.net/coconunt/kiwi?size=big&spice=pepper:\n" +
+                    "    ✗ has authority \"kiwi.net\" : found banana.net"
+
+        expectCatching {
+            expectThat(mockUri)
+                .isUri()
+                .hasPath("strawberry")
+        }.failed()
+            .message
+            .isEqualTo(expectedMessage)
+
+    }
+
     private fun mockUri(): Uri = Uri.EMPTY.buildUpon()
         .scheme("https")
         .authority("banana.net")

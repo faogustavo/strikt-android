@@ -143,6 +143,90 @@ class UriTests {
             .isEqualTo(expectedMessage)
     }
 
+    @Test
+    fun stringUri_withQueryParameterName_shouldSucceed() {
+        val mockUri = mockUri().toString()
+
+        expectThat(mockUri)
+            .isUri()
+            .hasQueryParameter("size")
+    }
+
+    @Test
+    fun stringUri_withQueryParameterName_shouldFail() {
+        val mockUri = mockUri().toString()
+
+        val expectedMessage =
+            "▼ Expect that \"https://banana.net/coconut/kiwi?size=big&spice=pepper\":\n" +
+                    "  ✓ is Uri\n" +
+                    "  ▼ https://banana.net/coconut/kiwi?size=big&spice=pepper:\n" +
+                    "    ✗ has query param \"quantity\"\n" +
+                    "      ▼ [\"size\", \"spice\"]:\n" +
+                    "        ✗ contains \"quantity\""
+
+        expectCatching {
+            expectThat(mockUri)
+                .isUri()
+                .hasQueryParameter("quantity")
+        }
+            .failed()
+            .message
+            .isEqualTo(expectedMessage)
+    }
+
+    @Test
+    fun stringUri_withQueryParameterNameAndValue_shouldSucceed() {
+        val mockUri = mockUri().toString()
+
+        expectThat(mockUri)
+            .isUri()
+            .hasQueryParameter("size", "big")
+    }
+
+    @Test
+    fun stringUri_withMultipleQueryParameterNames_shouldSucceed() {
+        val mockUri = mockUri().toString()
+
+        expectThat(mockUri)
+            .isUri()
+            .hasQueryParameter("size")
+            .hasQueryParameter("spice")
+    }
+
+    @Test
+    fun stringUri_withMultipleQueryParameterNamesAndValues_shouldSucceed() {
+        val mockUri = mockUri().toString()
+
+        expectThat(mockUri)
+            .isUri()
+            .hasQueryParameter("size", "big")
+            .hasQueryParameter("spice", "pepper")
+    }
+
+    @Test
+    fun stringUri_withQueryParameterNameAndValue_shouldFail() {
+        val mockUri = mockUri().toString()
+
+        val expectedMessage =
+            "▼ Expect that \"https://banana.net/coconut/kiwi?size=big&spice=pepper\":\n" +
+                    "  ✓ is Uri\n" +
+                    "  ▼ https://banana.net/coconut/kiwi?size=big&spice=pepper:\n" +
+                    "    ✗ has query param \"spice\"\n" +
+                    "      ▼ [\"size\", \"spice\"]:\n" +
+                    "        ✓ contains \"spice\"\n" +
+                    "      ▼ \"pepper\":\n" +
+                    "        ✓ is not null\n" +
+                    "        ✗ is equal to \"salt\" : found \"pepper\""
+
+        expectCatching {
+            expectThat(mockUri)
+                .isUri()
+                .hasQueryParameter("spice", "salt")
+        }.failed()
+            .message
+            .isEqualTo(expectedMessage)
+    }
+
     private fun mockUri(): Uri = Uri.EMPTY.buildUpon()
         .scheme("https")
         .authority("banana.net")

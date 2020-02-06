@@ -2,6 +2,9 @@ package strikt.android.uri
 
 import android.net.Uri
 import strikt.api.Assertion
+import strikt.assertions.contains
+import strikt.assertions.isEqualTo
+import strikt.assertions.isNotNull
 
 @Suppress("UNCHECKED_CAST")
 fun Assertion.Builder<String>.isUri(): Assertion.Builder<Uri> = assert("is Uri") {
@@ -52,3 +55,20 @@ fun Assertion.Builder<Uri>.hasPath(
         fail(description = "found ${uri.path}")
     }
 }
+
+fun Assertion.Builder<Uri>.hasQueryParameter(
+    queryParamName: String,
+    queryParamValue: String? = null
+): Assertion.Builder<Uri> =
+    compose("has query param %s", expected = queryParamName) {
+        get { queryParameterNames }.contains(queryParamName)
+        if (queryParamValue != null) {
+            get { getQueryParameter(queryParamName) }.isNotNull().isEqualTo(queryParamValue)
+        }
+    } then {
+        if (allPassed) {
+            pass()
+        } else {
+            fail()
+        }
+    }

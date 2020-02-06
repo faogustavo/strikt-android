@@ -35,7 +35,8 @@ class UriTests {
             """▼ Expect that "https://banana.net/coconut/kiwi?size=big&spice=pepper#green":
             |  ✓ is Uri
             |  ▼ https://banana.net/coconut/kiwi?size=big&spice=pepper#green:
-            |    ✗ has scheme "http" : found https""".trimMargin()
+            |    ▼ with scheme:
+            |      ✗ is equal to "http" : found "https"""".trimMargin()
 
         expectCatching {
             expectThat(mockUri)
@@ -63,7 +64,8 @@ class UriTests {
             """▼ Expect that "https://banana.net/coconut/kiwi?size=big&spice=pepper#green":
             |  ✓ is Uri
             |  ▼ https://banana.net/coconut/kiwi?size=big&spice=pepper#green:
-            |    ✗ has authority "kiwi.net" : found banana.net""".trimMargin()
+            |    ▼ with authority:
+            |      ✗ is equal to "kiwi.net" : found "banana.net"""".trimMargin()
 
         expectCatching {
             expectThat(mockUri)
@@ -102,7 +104,8 @@ class UriTests {
             """▼ Expect that "https://banana.net/coconut/kiwi?size=big&spice=pepper#green":
                 |  ✓ is Uri
                 |  ▼ https://banana.net/coconut/kiwi?size=big&spice=pepper#green:
-                |    ✗ has path segment "strawberry" : found [coconut, kiwi]""".trimMargin()
+                |    ▼ with path:
+                |      ✗ contains "strawberry"""".trimMargin()
 
         expectCatching {
             expectThat(mockUri)
@@ -131,7 +134,8 @@ class UriTests {
             """▼ Expect that "https://banana.net/coconut/kiwi?size=big&spice=pepper#green":
             |  ✓ is Uri
             |  ▼ https://banana.net/coconut/kiwi?size=big&spice=pepper#green:
-            |    ✗ has path "/kiwi/coconut" : found /coconut/kiwi""".trimMargin()
+            |    ▼ "/coconut/kiwi":
+            |      ✗ is equal to "/kiwi/coconut" : found "/coconut/kiwi"""".trimMargin()
 
         expectCatching {
             expectThat(mockUri)
@@ -159,9 +163,8 @@ class UriTests {
             """▼ Expect that "https://banana.net/coconut/kiwi?size=big&spice=pepper#green":
             |  ✓ is Uri
             |  ▼ https://banana.net/coconut/kiwi?size=big&spice=pepper#green:
-            |    ✗ has query param "quantity"
-            |      ▼ ["size", "spice"]:
-            |        ✗ contains "quantity"""".trimMargin()
+            |    ▼ query parameters:
+            |      ✗ contains "quantity"""".trimMargin()
 
         expectCatching {
             expectThat(mockUri)
@@ -210,12 +213,11 @@ class UriTests {
             """▼ Expect that "https://banana.net/coconut/kiwi?size=big&spice=pepper#green":
             |  ✓ is Uri
             |  ▼ https://banana.net/coconut/kiwi?size=big&spice=pepper#green:
-            |    ✗ has query param "spice"
-            |      ▼ ["size", "spice"]:
-            |        ✓ contains "spice"
-            |      ▼ "pepper":
-            |        ✓ is not null
-            |        ✗ is equal to "salt" : found "pepper"""".trimMargin()
+            |    ▼ query parameters:
+            |      ✓ contains "spice"
+            |    ▼ query parameter value:
+            |      ✓ is not null
+            |      ✗ is equal to "salt" : found "pepper"""".trimMargin()
 
         expectCatching {
             expectThat(mockUri)
@@ -243,7 +245,8 @@ class UriTests {
             """▼ Expect that "https://banana.net/coconut/kiwi?size=big&spice=pepper#green":
             |  ✓ is Uri
             |  ▼ https://banana.net/coconut/kiwi?size=big&spice=pepper#green:
-            |    ✗ has fragment "size" : found green""".trimMargin()
+            |    ▼ with fragment:
+            |      ✗ is equal to "size" : found "green"""".trimMargin()
 
         expectCatching {
             expectThat(mockUri)

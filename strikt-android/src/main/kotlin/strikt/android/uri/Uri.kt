@@ -17,68 +17,56 @@ fun Assertion.Builder<String>.isUri(): Assertion.Builder<Uri> = assert("is Uri")
 }.get { Uri.parse(this) }
 
 fun Assertion.Builder<Uri>.hasScheme(
-    scheme: String
-): Assertion.Builder<Uri> = assert("has scheme %s", expected = scheme) { uri ->
-    if (scheme == uri.scheme) {
-        pass()
-    } else {
-        fail(description = "found ${uri.scheme}")
-    }
+    schemeValue: String
+): Assertion.Builder<Uri> = and {
+    get { scheme }
+        .describedAs("with scheme")
+        .isEqualTo(schemeValue)
 }
 
 fun Assertion.Builder<Uri>.hasAuthority(
-    authority: String
-): Assertion.Builder<Uri> = assert("has authority %s", expected = authority) { uri ->
-    if (authority == uri.authority) {
-        pass()
-    } else {
-        fail(description = "found ${uri.authority}")
+    authorityValue: String
+): Assertion.Builder<Uri> =
+    and {
+        get { authority }
+            .describedAs("with authority")
+            .isEqualTo(authorityValue)
     }
-}
 
 fun Assertion.Builder<Uri>.hasPathSegment(
     pathSegment: String
-): Assertion.Builder<Uri> = assert("has path segment %s", expected = pathSegment) { uri ->
-    if (pathSegment in uri.pathSegments) {
-        pass()
-    } else {
-        fail(description = "found ${uri.pathSegments}")
-    }
+): Assertion.Builder<Uri> = and {
+    get { pathSegments }
+        .describedAs("with path")
+        .contains(pathSegment)
 }
 
 fun Assertion.Builder<Uri>.hasPath(
-    path: String
-): Assertion.Builder<Uri> = assert("has path %s", expected = path) { uri ->
-    if (path == uri.path) {
-        pass()
-    } else {
-        fail(description = "found ${uri.path}")
-    }
+    pathValue: String
+): Assertion.Builder<Uri> = and {
+    get { path }
+        .isEqualTo(pathValue)
 }
 
 fun Assertion.Builder<Uri>.hasFragment(
-    fragment: String
-): Assertion.Builder<Uri> = assert("has fragment %s", expected = fragment) { uri ->
-    if (fragment == uri.fragment) {
-        pass()
-    } else {
-        fail(description = "found ${uri.fragment}")
-    }
+    fragmentValue: String
+): Assertion.Builder<Uri> = and {
+    get { fragment }
+        .describedAs("with fragment")
+        .isEqualTo(fragmentValue)
 }
 
 fun Assertion.Builder<Uri>.hasQueryParameter(
     queryParamName: String,
     queryParamValue: String? = null
-): Assertion.Builder<Uri> =
-    compose("has query param %s", expected = queryParamName) {
-        get { queryParameterNames }.contains(queryParamName)
-        if (queryParamValue != null) {
-            get { getQueryParameter(queryParamName) }.isNotNull().isEqualTo(queryParamValue)
-        }
-    } then {
-        if (allPassed) {
-            pass()
-        } else {
-            fail()
-        }
+): Assertion.Builder<Uri> = and {
+    get { queryParameterNames }
+        .describedAs("query parameters")
+        .contains(queryParamName)
+    if (queryParamValue != null) {
+        get { getQueryParameter(queryParamName) }
+            .describedAs("query parameter value")
+            .isNotNull()
+            .isEqualTo(queryParamValue)
     }
+}

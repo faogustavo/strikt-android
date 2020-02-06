@@ -22,3 +22,13 @@ fun Assertion.Builder<Uri>.hasScheme(
         fail(description = "found ${uri.scheme}")
     }
 }
+
+fun Assertion.Builder<Uri>.hasAuthority(
+    authority: String
+): Assertion.Builder<Uri> = assert("has authority %s", expected = authority) { uri ->
+    if (authority == uri.authority) {
+        pass()
+    } else {
+        fail(description = "found ${uri.authority}")
+    }
+}

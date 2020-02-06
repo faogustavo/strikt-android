@@ -2,6 +2,7 @@ package strikt.android
 
 import android.net.Uri
 import org.junit.Test
+import strikt.android.uri.hasAuthority
 import strikt.android.uri.hasScheme
 import strikt.android.uri.isUri
 import strikt.api.expectCatching
@@ -65,7 +66,7 @@ class UriTests {
             "▼ Expect that \"https://banana.net/coconunt/kiwi?size=big&spice=pepper\":\n" +
                     "  ✓ is Uri\n" +
                     "  ▼ https://banana.net/coconunt/kiwi?size=big&spice=pepper:\n" +
-                    "    ✗ has scheme \"http\" : found https"
+                    "    ✗ has authority \"kiwi.net\" : found banana.net"
 
         expectCatching {
             expectThat(mockUri)

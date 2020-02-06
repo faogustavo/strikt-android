@@ -257,6 +257,47 @@ class UriTests {
             .isEqualTo(expectedMessage)
     }
 
+
+    @Test
+    fun all_failures() {
+        val mockUri = mockUri().toString()
+
+        val expectedMessage =
+            """▼ Expect that "https://banana.net/coconut/kiwi?size=big&spice=pepper#green":
+            |  ✓ is Uri
+            |  ▼ https://banana.net/coconut/kiwi?size=big&spice=pepper#green:
+            |    ▼ with scheme:
+            |      ✗ is equal to "http" : found "https"
+            |    ▼ with authority:
+            |      ✗ is equal to "kiwi.net" : found "banana.net"
+            |    ▼ with path:
+            |      ✗ contains "strawberry"
+            |    ▼ query parameters:
+            |      ✗ contains "quantity"
+            |    ▼ query parameters:
+            |      ✓ contains "size"
+            |    ▼ query parameter value:
+            |      ✓ is not null
+            |      ✗ is equal to "salt" : found "big"
+            |    ▼ with fragment:
+            |      ✗ is equal to "size" : found "green"""".trimMargin()
+
+        expectCatching {
+            expectThat(mockUri)
+                .isUri().and {
+                    hasScheme("http")
+                    hasAuthority("kiwi.net")
+                    hasPathSegment("strawberry")
+                    hasQueryParameter("quantity")
+                    hasQueryParameter("size", "salt")
+                    hasFragment("size")
+                }
+        }.failed()
+            .message
+            .isEqualTo(expectedMessage)
+
+    }
+
     private fun mockUri(): Uri = Uri.EMPTY.buildUpon()
         .scheme("https")
         .authority("banana.net")

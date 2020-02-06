@@ -2,6 +2,7 @@ package strikt.android
 
 import android.net.Uri
 import org.junit.Test
+import strikt.android.uri.isUri
 import strikt.api.expectThat
 
 class UriTests {

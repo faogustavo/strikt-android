@@ -298,6 +298,21 @@ class UriTests {
 
     }
 
+    @Test
+    fun all_success() {
+        val mockUri = mockUri().toString()
+
+        expectThat(mockUri)
+            .isUri().and {
+                hasScheme("https")
+                hasAuthority("banana.net")
+                hasPathSegment("coconut")
+                hasQueryParameter("spice")
+                hasQueryParameter("size", "big")
+                hasFragment("green")
+            }
+    }
+
     private fun mockUri(): Uri = Uri.EMPTY.buildUpon()
         .scheme("https")
         .authority("banana.net")

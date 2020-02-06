@@ -2,10 +2,7 @@ package strikt.android
 
 import android.net.Uri
 import org.junit.Test
-import strikt.android.uri.hasAuthority
-import strikt.android.uri.hasPathSegment
-import strikt.android.uri.hasScheme
-import strikt.android.uri.isUri
+import strikt.android.uri.*
 import strikt.api.expectCatching
 import strikt.api.expectThat
 import strikt.assertions.failed
@@ -116,6 +113,34 @@ class UriTests {
             .message
             .isEqualTo(expectedMessage)
 
+    }
+
+    @Test
+    fun stringUri_withPath_shouldSucceed() {
+        val mockUri = mockUri().toString()
+
+        expectThat(mockUri)
+            .isUri()
+            .hasPath("/coconut/kiwi")
+    }
+
+    @Test
+    fun stringUri_withPath_shouldFail() {
+        val mockUri = mockUri().toString()
+
+        val expectedMessage =
+            "▼ Expect that \"https://banana.net/coconut/kiwi?size=big&spice=pepper\":\n" +
+                    "  ✓ is Uri\n" +
+                    "  ▼ https://banana.net/coconut/kiwi?size=big&spice=pepper:\n" +
+                    "    ✗ has path \"/kiwi/coconut\" : found /coconut/kiwi"
+
+        expectCatching {
+            expectThat(mockUri)
+                .isUri()
+                .hasPath("/kiwi/coconut")
+        }.failed()
+            .message
+            .isEqualTo(expectedMessage)
     }
 
     private fun mockUri(): Uri = Uri.EMPTY.buildUpon()

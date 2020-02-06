@@ -12,3 +12,13 @@ fun Assertion.Builder<String>.isUri(): Assertion.Builder<Uri> = assert("is Uri")
         fail("cannot parse to Uri")
     }
 }.get { Uri.parse(this) }
+
+fun Assertion.Builder<Uri>.hasScheme(
+    scheme: String
+): Assertion.Builder<Uri> = assert("has scheme %s", expected = scheme) { uri ->
+    if (scheme == uri.scheme) {
+        pass()
+    } else {
+        fail(description = "found ${uri.scheme}")
+    }
+}

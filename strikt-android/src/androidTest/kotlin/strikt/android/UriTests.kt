@@ -3,6 +3,7 @@ package strikt.android
 import android.net.Uri
 import org.junit.Test
 import strikt.android.uri.hasAuthority
+import strikt.android.uri.hasPathSegment
 import strikt.android.uri.hasScheme
 import strikt.android.uri.isUri
 import strikt.api.expectCatching
@@ -34,9 +35,9 @@ class UriTests {
         val mockUri = mockUri().toString()
 
         val expectedMessage =
-            "▼ Expect that \"https://banana.net/coconunt/kiwi?size=big&spice=pepper\":\n" +
+            "▼ Expect that \"https://banana.net/coconut/kiwi?size=big&spice=pepper\":\n" +
                     "  ✓ is Uri\n" +
-                    "  ▼ https://banana.net/coconunt/kiwi?size=big&spice=pepper:\n" +
+                    "  ▼ https://banana.net/coconut/kiwi?size=big&spice=pepper:\n" +
                     "    ✗ has scheme \"http\" : found https"
 
         expectCatching {
@@ -63,9 +64,9 @@ class UriTests {
         val mockUri = mockUri().toString()
 
         val expectedMessage =
-            "▼ Expect that \"https://banana.net/coconunt/kiwi?size=big&spice=pepper\":\n" +
+            "▼ Expect that \"https://banana.net/coconut/kiwi?size=big&spice=pepper\":\n" +
                     "  ✓ is Uri\n" +
-                    "  ▼ https://banana.net/coconunt/kiwi?size=big&spice=pepper:\n" +
+                    "  ▼ https://banana.net/coconut/kiwi?size=big&spice=pepper:\n" +
                     "    ✗ has authority \"kiwi.net\" : found banana.net"
 
         expectCatching {
@@ -79,28 +80,38 @@ class UriTests {
     }
 
     @Test
-    fun stringUri_withPath_shouldSucceed() {
+    fun stringUri_withPathSegment_shouldSucceed() {
         val mockUri = mockUri().toString()
 
         expectThat(mockUri)
             .isUri()
-            .hasPath("kiwi")
+            .hasPathSegment("kiwi")
     }
 
     @Test
-    fun stringUri_withPath_shouldFail() {
+    fun stringUri_withMultiplePathSegments_shouldSucceed() {
+        val mockUri = mockUri().toString()
+
+        expectThat(mockUri)
+            .isUri()
+            .hasPathSegment("kiwi")
+            .hasPathSegment("coconut")
+    }
+
+    @Test
+    fun stringUri_withPathSegment_shouldFail() {
         val mockUri = mockUri().toString()
 
         val expectedMessage =
-            "▼ Expect that \"https://banana.net/coconunt/kiwi?size=big&spice=pepper\":\n" +
+            "▼ Expect that \"https://banana.net/coconut/kiwi?size=big&spice=pepper\":\n" +
                     "  ✓ is Uri\n" +
-                    "  ▼ https://banana.net/coconunt/kiwi?size=big&spice=pepper:\n" +
-                    "    ✗ has authority \"kiwi.net\" : found banana.net"
+                    "  ▼ https://banana.net/coconut/kiwi?size=big&spice=pepper:\n" +
+                    "    ✗ has path segment \"strawberry\" : found [coconut, kiwi]"
 
         expectCatching {
             expectThat(mockUri)
                 .isUri()
-                .hasPath("strawberry")
+                .hasPathSegment("strawberry")
         }.failed()
             .message
             .isEqualTo(expectedMessage)
@@ -110,7 +121,7 @@ class UriTests {
     private fun mockUri(): Uri = Uri.EMPTY.buildUpon()
         .scheme("https")
         .authority("banana.net")
-        .appendPath("coconunt")
+        .appendPath("coconut")
         .appendPath("kiwi")
         .appendQueryParameter("size", "big")
         .appendQueryParameter("spice", "pepper")

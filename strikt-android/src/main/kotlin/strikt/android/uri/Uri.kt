@@ -32,3 +32,13 @@ fun Assertion.Builder<Uri>.hasAuthority(
         fail(description = "found ${uri.authority}")
     }
 }
+
+fun Assertion.Builder<Uri>.hasPathSegment(
+    pathSegment: String
+): Assertion.Builder<Uri> = assert("has path segment %s", expected = pathSegment) { uri ->
+    if (pathSegment in uri.pathSegments) {
+        pass()
+    } else {
+        fail(description = "found ${uri.pathSegments}")
+    }
+}

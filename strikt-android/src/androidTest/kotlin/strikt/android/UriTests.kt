@@ -9,9 +9,18 @@ class UriTests {
 
     @Test
     fun stringIsUri_succeed() {
-        val uri = mockUri().toString()
+        val mockUri = mockUri().toString()
 
-        expectThat(uri).isUri()
+        expectThat(mockUri).isUri()
+    }
+
+    @Test
+    fun stringUri_withScheme_shouldSucceed() {
+        val mockUri = mockUri().toString()
+
+        expectThat(mockUri)
+            .isUri()
+            .hasScheme("https")
     }
 
     private fun mockUri(): Uri = Uri.EMPTY.buildUpon()

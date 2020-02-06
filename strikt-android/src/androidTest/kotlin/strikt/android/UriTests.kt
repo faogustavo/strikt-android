@@ -4,7 +4,11 @@ import android.net.Uri
 import org.junit.Test
 import strikt.android.uri.hasScheme
 import strikt.android.uri.isUri
+import strikt.api.expectCatching
 import strikt.api.expectThat
+import strikt.assertions.failed
+import strikt.assertions.isEqualTo
+import strikt.assertions.message
 
 class UriTests {
 
@@ -22,6 +26,26 @@ class UriTests {
         expectThat(mockUri)
             .isUri()
             .hasScheme("https")
+    }
+
+    @Test
+    fun stringUri_withScheme_shouldFail() {
+        val mockUri = mockUri().toString()
+
+        val expectedMessage =
+            "▼ Expect that \"https://banana.net/coconunt/kiwi?size=big&spice=pepper\":\n" +
+                    "  ✓ is Uri\n" +
+                    "  ▼ https://banana.net/coconunt/kiwi?size=big&spice=pepper:\n" +
+                    "    ✗ has scheme \"http\" : found https"
+
+        expectCatching {
+            expectThat(mockUri)
+                .isUri()
+                .hasScheme("http")
+        }.failed()
+            .message
+            .isEqualTo(expectedMessage)
+
     }
 
     private fun mockUri(): Uri = Uri.EMPTY.buildUpon()

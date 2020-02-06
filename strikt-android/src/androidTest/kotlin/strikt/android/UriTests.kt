@@ -272,6 +272,8 @@ class UriTests {
             |      ✗ is equal to "kiwi.net" : found "banana.net"
             |    ▼ with path:
             |      ✗ contains "strawberry"
+            |    ▼ "/coconut/kiwi":
+            |      ✗ is equal to "/kiwi/coconut" : found "/coconut/kiwi"
             |    ▼ query parameters:
             |      ✗ contains "quantity"
             |    ▼ query parameters:
@@ -288,6 +290,7 @@ class UriTests {
                     hasScheme("http")
                     hasAuthority("kiwi.net")
                     hasPathSegment("strawberry")
+                    hasPath("/kiwi/coconut")
                     hasQueryParameter("quantity")
                     hasQueryParameter("size", "salt")
                     hasFragment("size")
@@ -307,6 +310,7 @@ class UriTests {
                 hasScheme("https")
                 hasAuthority("banana.net")
                 hasPathSegment("coconut")
+                hasPath("/coconut/kiwi")
                 hasQueryParameter("spice")
                 hasQueryParameter("size", "big")
                 hasFragment("green")

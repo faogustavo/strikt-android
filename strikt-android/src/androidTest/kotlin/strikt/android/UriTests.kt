@@ -60,10 +60,10 @@ class UriTests {
         val mockUri = mockUri().toString()
 
         val expectedMessage =
-            "▼ Expect that \"https://banana.net/coconut/kiwi?size=big&spice=pepper#green\":\n" +
-                    "  ✓ is Uri\n" +
-                    "  ▼ https://banana.net/coconut/kiwi?size=big&spice=pepper#green:\n" +
-                    "    ✗ has authority \"kiwi.net\" : found banana.net"
+            """▼ Expect that "https://banana.net/coconut/kiwi?size=big&spice=pepper#green":
+            |  ✓ is Uri
+            |  ▼ https://banana.net/coconut/kiwi?size=big&spice=pepper#green:
+            |    ✗ has authority "kiwi.net" : found banana.net""".trimMargin()
 
         expectCatching {
             expectThat(mockUri)
@@ -99,10 +99,10 @@ class UriTests {
         val mockUri = mockUri().toString()
 
         val expectedMessage =
-            "▼ Expect that \"https://banana.net/coconut/kiwi?size=big&spice=pepper#green\":\n" +
-                    "  ✓ is Uri\n" +
-                    "  ▼ https://banana.net/coconut/kiwi?size=big&spice=pepper#green:\n" +
-                    "    ✗ has path segment \"strawberry\" : found [coconut, kiwi]"
+            """▼ Expect that "https://banana.net/coconut/kiwi?size=big&spice=pepper#green":
+                |  ✓ is Uri
+                |  ▼ https://banana.net/coconut/kiwi?size=big&spice=pepper#green:
+                |    ✗ has path segment "strawberry" : found [coconut, kiwi]""".trimMargin()
 
         expectCatching {
             expectThat(mockUri)
@@ -128,10 +128,10 @@ class UriTests {
         val mockUri = mockUri().toString()
 
         val expectedMessage =
-            "▼ Expect that \"https://banana.net/coconut/kiwi?size=big&spice=pepper#green\":\n" +
-                    "  ✓ is Uri\n" +
-                    "  ▼ https://banana.net/coconut/kiwi?size=big&spice=pepper#green:\n" +
-                    "    ✗ has path \"/kiwi/coconut\" : found /coconut/kiwi"
+            """▼ Expect that "https://banana.net/coconut/kiwi?size=big&spice=pepper#green":
+            |  ✓ is Uri
+            |  ▼ https://banana.net/coconut/kiwi?size=big&spice=pepper#green:
+            |    ✗ has path "/kiwi/coconut" : found /coconut/kiwi""".trimMargin()
 
         expectCatching {
             expectThat(mockUri)
@@ -156,12 +156,12 @@ class UriTests {
         val mockUri = mockUri().toString()
 
         val expectedMessage =
-            "▼ Expect that \"https://banana.net/coconut/kiwi?size=big&spice=pepper#green\":\n" +
-                    "  ✓ is Uri\n" +
-                    "  ▼ https://banana.net/coconut/kiwi?size=big&spice=pepper#green:\n" +
-                    "    ✗ has query param \"quantity\"\n" +
-                    "      ▼ [\"size\", \"spice\"]:\n" +
-                    "        ✗ contains \"quantity\""
+            """▼ Expect that "https://banana.net/coconut/kiwi?size=big&spice=pepper#green":
+            |  ✓ is Uri
+            |  ▼ https://banana.net/coconut/kiwi?size=big&spice=pepper#green:
+            |    ✗ has query param "quantity"
+            |      ▼ ["size", "spice"]:
+            |        ✗ contains "quantity"""".trimMargin()
 
         expectCatching {
             expectThat(mockUri)
@@ -207,15 +207,15 @@ class UriTests {
         val mockUri = mockUri().toString()
 
         val expectedMessage =
-            "▼ Expect that \"https://banana.net/coconut/kiwi?size=big&spice=pepper#green\":\n" +
-                    "  ✓ is Uri\n" +
-                    "  ▼ https://banana.net/coconut/kiwi?size=big&spice=pepper#green:\n" +
-                    "    ✗ has query param \"spice\"\n" +
-                    "      ▼ [\"size\", \"spice\"]:\n" +
-                    "        ✓ contains \"spice\"\n" +
-                    "      ▼ \"pepper\":\n" +
-                    "        ✓ is not null\n" +
-                    "        ✗ is equal to \"salt\" : found \"pepper\""
+            """▼ Expect that "https://banana.net/coconut/kiwi?size=big&spice=pepper#green":
+            |  ✓ is Uri
+            |  ▼ https://banana.net/coconut/kiwi?size=big&spice=pepper#green:
+            |    ✗ has query param "spice"
+            |      ▼ ["size", "spice"]:
+            |        ✓ contains "spice"
+            |      ▼ "pepper":
+            |        ✓ is not null
+            |        ✗ is equal to "salt" : found "pepper"""".trimMargin()
 
         expectCatching {
             expectThat(mockUri)
@@ -240,10 +240,10 @@ class UriTests {
         val mockUri = mockUri().toString()
 
         val expectedMessage =
-            "▼ Expect that \"https://banana.net/coconut/kiwi?size=big&spice=pepper#green\":\n" +
-                    "  ✓ is Uri\n" +
-                    "  ▼ https://banana.net/coconut/kiwi?size=big&spice=pepper#green:\n" +
-                    "    ✗ has fragment \"size\" : found green"
+            """▼ Expect that "https://banana.net/coconut/kiwi?size=big&spice=pepper#green":
+            |  ✓ is Uri
+            |  ▼ https://banana.net/coconut/kiwi?size=big&spice=pepper#green:
+            |    ✗ has fragment "size" : found green""".trimMargin()
 
         expectCatching {
             expectThat(mockUri)

@@ -56,6 +56,16 @@ fun Assertion.Builder<Uri>.hasPath(
     }
 }
 
+fun Assertion.Builder<Uri>.hasFragment(
+    fragment: String
+): Assertion.Builder<Uri> = assert("has fragment %s", expected = fragment) { uri ->
+    if (fragment == uri.fragment) {
+        pass()
+    } else {
+        fail(description = "found ${uri.fragment}")
+    }
+}
+
 fun Assertion.Builder<Uri>.hasQueryParameter(
     queryParamName: String,
     queryParamValue: String? = null

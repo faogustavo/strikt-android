@@ -32,10 +32,10 @@ class UriTests {
         val mockUri = mockUri().toString()
 
         val expectedMessage =
-            "▼ Expect that \"https://banana.net/coconut/kiwi?size=big&spice=pepper#green\":\n" +
-                    "  ✓ is Uri\n" +
-                    "  ▼ https://banana.net/coconut/kiwi?size=big&spice=pepper#green:\n" +
-                    "    ✗ has scheme \"http\" : found https"
+            """▼ Expect that "https://banana.net/coconut/kiwi?size=big&spice=pepper#green":
+            |  ✓ is Uri
+            |  ▼ https://banana.net/coconut/kiwi?size=big&spice=pepper#green:
+            |    ✗ has scheme "http" : found https""".trimMargin()
 
         expectCatching {
             expectThat(mockUri)
@@ -44,7 +44,6 @@ class UriTests {
         }.failed()
             .message
             .isEqualTo(expectedMessage)
-
     }
 
     @Test

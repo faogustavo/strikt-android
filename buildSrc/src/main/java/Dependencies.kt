@@ -40,6 +40,6 @@ object Distribution {
     object Android {
         val groupId = "io.strikt"
         val artifactId = "strikt-android"
-        val version = "${Versions.strikt}-alpha02"
+        val version = "${Versions.strikt}-alpha03"
     }
 }

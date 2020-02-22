@@ -174,6 +174,46 @@ class ViewPaddingTest : BaseTestClass() {
             .isEqualTo(expectedMessage)
     }
 
+    @Test
+    fun paddingLeft_shouldReturnPaddingLeftProperty() {
+        val padding = 8
+        val view = mockView(left = padding)
+
+        expectThat(view)
+            .paddingLeft
+            .isEqualTo(padding)
+    }
+
+    @Test
+    fun paddingTop_shouldReturnPaddingTopProperty() {
+        val padding = 8
+        val view = mockView(top = padding)
+
+        expectThat(view)
+            .paddingTop
+            .isEqualTo(padding)
+    }
+
+    @Test
+    fun paddingBottom_shouldReturnPaddingBottomProperty() {
+        val padding = 8
+        val view = mockView(bottom = padding)
+
+        expectThat(view)
+            .paddingBottom
+            .isEqualTo(padding)
+    }
+
+    @Test
+    fun paddingRight_shouldReturnPaddingRightProperty() {
+        val padding = 8
+        val view = mockView(right = padding)
+
+        expectThat(view)
+            .paddingRight
+            .isEqualTo(padding)
+    }
+
     private fun mockView(
         left: Int = 0,
         top: Int = 0,

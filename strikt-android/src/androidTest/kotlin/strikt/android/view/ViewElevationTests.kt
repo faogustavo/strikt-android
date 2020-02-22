@@ -80,6 +80,16 @@ class ViewElevationTests : BaseTestClass() {
             .isEqualTo(expectedMessage)
     }
 
+    @Test
+    fun elevation_shouldReturnElevationProperty() {
+        val elevation = 2.0f
+        val view = mockView(elevation)
+
+        expectThat(view)
+            .elevation
+            .isEqualTo(elevation)
+    }
+
     private fun mockView(
         elevation: Float = 1.0f
     ) = TestView(context).apply {

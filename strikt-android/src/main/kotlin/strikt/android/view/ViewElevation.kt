@@ -25,3 +25,6 @@ fun <T : View> Assertion.Builder<T>.hasElevationLessThan(expected: Float) =
         val elevation = it.elevation
         if (elevation < expected) pass() else fail(actual = elevation)
     }
+
+val <T : View> Assertion.Builder<T>.elevation
+    get() = get(View::getElevation)

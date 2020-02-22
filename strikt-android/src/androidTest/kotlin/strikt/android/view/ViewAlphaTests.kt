@@ -2,6 +2,7 @@ package strikt.android.view
 
 import org.junit.Test
 import strikt.android.BaseTestClass
+import strikt.api.expect
 import strikt.api.expectCatching
 import strikt.api.expectThat
 import strikt.assertions.failed
@@ -78,6 +79,16 @@ class ViewAlphaTests : BaseTestClass() {
             .isA<AssertionError>()
             .message
             .isEqualTo(expectedMessage)
+    }
+
+    @Test
+    fun alpha_shouldReturnAlphaProperty() {
+        val alpha = 1.0f
+        val view = mockView(alpha)
+
+        expectThat(view)
+            .alpha
+            .isEqualTo(alpha)
     }
 
     private fun mockView(

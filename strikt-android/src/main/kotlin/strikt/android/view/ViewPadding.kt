@@ -42,3 +42,15 @@ fun <T : View> Assertion.Builder<T>.hasEndPadding(expected: Int) =
         val padding = it.paddingEnd
         if (padding == expected) pass() else fail(actual = padding)
     }
+
+val <T : View> Assertion.Builder<T>.paddingLeft
+    get() = get(View::getPaddingLeft)
+
+val <T : View> Assertion.Builder<T>.paddingTop
+    get() = get(View::getPaddingTop)
+
+val <T : View> Assertion.Builder<T>.paddingRight
+    get() = get(View::getPaddingRight)
+
+val <T : View> Assertion.Builder<T>.paddingBottom
+    get() = get(View::getPaddingBottom)

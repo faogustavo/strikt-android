@@ -26,3 +26,10 @@ fun <T : ViewGroup> Assertion.Builder<T>.hasChildCount(expected: Int) =
         val count = it.childCount
         if (count == expected) pass() else fail(actual = count)
     }
+
+val <T : View> Assertion.Builder<T>.parent
+    get() = get(View::getParent)
+
+val <T : ViewGroup> Assertion.Builder<T>.children
+    get() = get(ViewGroup::children)
+

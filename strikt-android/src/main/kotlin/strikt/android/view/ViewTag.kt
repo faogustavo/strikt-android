@@ -14,3 +14,6 @@ fun <T : View> Assertion.Builder<T>.hasTag(expected: Pair<Int, Any?>) =
         val tag = it.getTag(expected.first)
         if (tag == expected.second) pass() else fail(actual = tag)
     }
+
+val <T : View> Assertion.Builder<T>.tag
+    get() = get(View::getTag)

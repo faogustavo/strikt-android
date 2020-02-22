@@ -6,10 +6,7 @@ import org.junit.Test
 import strikt.android.BaseTestClass
 import strikt.api.expectCatching
 import strikt.api.expectThat
-import strikt.assertions.failed
-import strikt.assertions.isA
-import strikt.assertions.isEqualTo
-import strikt.assertions.message
+import strikt.assertions.*
 
 class ViewRelativesTests : BaseTestClass() {
 
@@ -112,5 +109,17 @@ class ViewRelativesTests : BaseTestClass() {
             .isA<AssertionError>()
             .message
             .isEqualTo(expectedMessage)
+    }
+
+    @Test
+    fun parent_returnsParentProperty() {
+        expectThat(child)
+            .parent
+            .isNotNull()
+            .isEqualTo(parent)
+
+        expectThat(viewWithoutParent)
+            .parent
+            .isNull()
     }
 }

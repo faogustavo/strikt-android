@@ -31,3 +31,6 @@ fun <T : View> Assertion.Builder<T>.hasVisibility(expected: Int) {
         if (value == expected) pass() else fail(actual = value.toViewVisibility())
     }
 }
+
+val <T : View> Assertion.Builder<T>.visibility
+    get() = get(View::getVisibility)

@@ -37,6 +37,16 @@ class ViewIdTest : BaseTestClass() {
             .isEqualTo(expectedMessage)
     }
 
+    @Test
+    fun id_shouldReturnIdProperty() {
+        val id = Random(System.currentTimeMillis()).nextInt()
+        val view = mockView(id)
+
+        expectThat(view)
+            .id
+            .isEqualTo(id)
+    }
+
     private fun mockView(id: Int) = TestView(context).apply {
         this.id = id
     }

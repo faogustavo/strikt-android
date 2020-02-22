@@ -61,6 +61,16 @@ class ViewTagTest : BaseTestClass() {
             .isEqualTo(expectedMessage)
     }
 
+    @Test
+    fun tag_shouldReturnTagProperty() {
+        val tag = "Hello World"
+        val view = mockView(tag = tag)
+
+        expectThat(view)
+            .tag
+            .isEqualTo(tag)
+    }
+
     fun mockView(
         tag: Any? = null,
         tagWithKey: Pair<Int, Any>? = null

@@ -86,6 +86,16 @@ class ViewVisibilityTests : BaseTestClass() {
     }
 
     @Test
+    fun visibility_returnsVisibilityProperty() {
+        val visibility = View.GONE
+        val view = mockView(visibility = visibility)
+
+        expectThat(view)
+            .visibility
+            .isEqualTo(visibility)
+    }
+
+    @Test
     fun hasVisibility_withWrongVisibility_shouldFail() {
         val view = mockView(visibility = View.INVISIBLE)
 

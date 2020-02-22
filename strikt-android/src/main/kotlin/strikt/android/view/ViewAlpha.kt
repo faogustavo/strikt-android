@@ -2,6 +2,7 @@ package strikt.android.view
 
 import android.view.View
 import strikt.api.Assertion
+import strikt.api.expect
 
 fun <T : View> Assertion.Builder<T>.hasAlpha(expected: Float) =
     assert("has alpha $expected", expected = expected) {
@@ -20,3 +21,6 @@ fun <T : View> Assertion.Builder<T>.hasAlphaLessThan(expected: Float) =
         val alpha = it.alpha
         if (alpha < expected) pass() else fail(actual = alpha)
     }
+
+val <T : View> Assertion.Builder<T>.alpha
+    get() = get(View::getAlpha)

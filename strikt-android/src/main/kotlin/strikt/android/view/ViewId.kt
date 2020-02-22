@@ -8,3 +8,6 @@ fun <T : View> Assertion.Builder<T>.hasId(expected: Int) =
         val id = it.id
         if (id == expected) pass() else fail(actual = id)
     }
+
+val <T : View> Assertion.Builder<T>.id
+    get() = get(View::getId)

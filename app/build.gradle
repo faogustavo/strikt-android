@@ -27,4 +27,7 @@ dependencies {
     implementation Libs.appCompat
     implementation Libs.ktx
     testImplementation Libs.junit
+    testImplementation Libs.striktCore
+    androidTestImplementation Libs.junit
+    androidTestImplementation Libs.striktCore
 }
